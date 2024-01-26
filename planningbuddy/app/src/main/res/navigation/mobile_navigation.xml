@@ -22,4 +22,14 @@
         android:name="com.example.planningbuddy.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/navigation_to_do"
+        android:name="com.example.planningbuddy.ui.todo.ToDoFragment"
+        android:label="@string/title_todo"
+        tools:layout="@layout/fragment_to_do" />
+    <fragment
+        android:id="@+id/navigation_courses"
+        android:name="com.example.planningbuddy.ui.courses.CourseFragment"
+        android:label="@string/title_courses"
+        tools:layout="@layout/fragment_courses" />
 </navigation>
