@@ -6,12 +6,10 @@ import androidx.room.PrimaryKey;
 import java.util.Date;
 
 @Entity
-public class Task {
+public class Course {
     @PrimaryKey
     public int uid;
     public String name;
-    public Date date;
-    public TaskType type;
-    public Course associatedCourse;
-    public boolean isCompleted;
+    public String department;
+    public int number;
 }
