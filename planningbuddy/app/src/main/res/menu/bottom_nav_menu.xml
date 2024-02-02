@@ -7,21 +7,23 @@
         android:title="@string/title_home" />
 
     <item
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_todo"
         android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/title_dashboard" />
+        android:title="@string/ToDoList" />
 
     <item
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_assigment"
         android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="@string/title_notifications" />
+        android:title="@string/Assigments" />
+
     <item
-        android:id="@+id/navigation_to_do"
+        android:id="@+id/navigation_exams"
         android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="@string/title_todo" />
+        android:title="@string/Exams" />
+
     <item
         android:id="@+id/navigation_courses"
         android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="@string/title_courses" />
+        android:title="@string/Courses" />
 
 </menu>
