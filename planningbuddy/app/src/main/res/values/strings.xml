@@ -10,4 +10,6 @@
     <string name="add_task">Add Task</string>
     <string name="add_course">Add Course</string>
     <string name="enter_class_name">Enter Class Name</string>
+    <string name="title_todo">TODO</string>
+    <string name="title_courses">Courses</string>
 </resources>

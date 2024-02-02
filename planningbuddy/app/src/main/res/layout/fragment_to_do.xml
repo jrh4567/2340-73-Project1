@@ -19,7 +19,7 @@
 <!--        tools:layout_editor_absoluteX="89dp" />-->
 
     <ListView
-        android:id="@+id/text_courses"
+        android:id="@+id/text_todo"
         android:layout_width="305dp"
         android:layout_height="458dp"
         android:layout_marginStart="8dp"
