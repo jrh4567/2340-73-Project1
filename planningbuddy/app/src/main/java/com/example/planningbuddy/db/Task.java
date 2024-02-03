@@ -1,5 +1,6 @@
 package com.example.planningbuddy.db;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Task {
@@ -8,6 +9,28 @@ public class Task {
     private TaskType type;
     private Course associatedCourse;
     private boolean isCompleted;
+
+    private static ArrayList<Task> currentTasks = new ArrayList<Task>();
+
+    public Task(String name, Date dueDate, TaskType type, Course associatedCourse, boolean isCompleted) {
+        this.name = name;
+        this.dueDate = dueDate;
+        this.type = type;
+        this.associatedCourse = associatedCourse;
+        this.isCompleted = isCompleted;
+    }
+
+    public static void addTask(Task task) {
+        currentTasks.add(task);
+    }
+
+    public static Task getCurrentTask(int index) {
+        return currentTasks.get(index);
+    }
+
+    public static ArrayList<Task> getCurrentTasks() {
+        return currentTasks;
+    }
 
     public String toString() {
         return String.format("%s: %s, due on %s for %s", name, type, dueDate, ("" + associatedCourse.getDepartment() + associatedCourse.getNumber()));

@@ -4,26 +4,28 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.planningbuddy.db.Course;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class CourseViewModel extends ViewModel {
 
-    private final MutableLiveData<List<String>> mClassList;
+    private final MutableLiveData<List<Course>> mClassList;
 
     public CourseViewModel() {
         mClassList = new MutableLiveData<>();
-        mClassList.setValue(new ArrayList<>());
+        mClassList.setValue(Course.getCurrentCourses());
     }
 
-    public LiveData<List<String>> getClassList() {
+    public LiveData<List<Course>> getClassList() {
         return mClassList;
     }
 
-    public void addClass(String className) {
-        List<String> currentList = mClassList.getValue();
+    public void addClass(Course newCourse) {
+        List<Course> currentList = mClassList.getValue();
         assert currentList != null;
-        currentList.add(className);
+        currentList.add(newCourse);
         mClassList.setValue(currentList);
     }
 }

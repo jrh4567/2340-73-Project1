@@ -13,8 +13,12 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.planningbuddy.databinding.FragmentCoursesBinding;
+import com.example.planningbuddy.db.Course;
+import com.example.planningbuddy.db.MeetingType;
 import com.example.planningbuddy.ui.courses.CourseViewModel;
 
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class CourseFragment extends Fragment {
@@ -38,7 +42,8 @@ public class CourseFragment extends Fragment {
             public void onClick(View view) {
                 String className = editTextClassName.getText().toString().trim();
                 if (!className.isEmpty()) {
-                    courseViewModel.addClass(className);
+                    Course.MeetingTime meet = new Course.MeetingTime(MeetingType.LECTURE, "CCB", new GregorianCalendar(2024, 2, 3, 13, 0), new GregorianCalendar(2024, 2, 3, 14, 0));
+                    courseViewModel.addClass(new Course("ND", 0000, className, new Course.MeetingTime[]{meet}));
                     editTextClassName.setText("");
                 }
             }
@@ -49,8 +54,8 @@ public class CourseFragment extends Fragment {
         return root;
     }
 
-    private void updateClassList(List<String> classList) {
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(),
+    private void updateClassList(List<Course> classList) {
+        ArrayAdapter<Course> adapter = new ArrayAdapter<>(requireContext(),
                 android.R.layout.simple_list_item_1, classList);
 
         binding.textCourses.setAdapter(adapter);
