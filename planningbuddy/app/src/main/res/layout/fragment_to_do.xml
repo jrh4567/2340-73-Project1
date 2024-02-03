@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey"
-    tools:context=".ui.courses.CourseFragment">
+    tools:context=".ui.todo.ToDoFragment">
 
     <!--    <EditText-->
 <!--        android:id="@+id/editTextClassName"-->
@@ -19,7 +19,7 @@
 <!--        tools:layout_editor_absoluteX="89dp" />-->
 
     <ListView
-        android:id="@+id/text_todo"
+        android:id="@+id/text_to_do"
         android:layout_width="305dp"
         android:layout_height="458dp"
         android:layout_marginStart="8dp"
@@ -35,6 +35,16 @@
         app:layout_constraintVertical_bias="0.177">
 
     </ListView>
+    <EditText
+        android:id="@+id/editTextToDoName"
+        android:layout_width="match_parent"
+        android:textColor="@color/white"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginTop="16dp"
+        android:hint="@string/enter_class_name"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="89dp" />
 
     <Button
         android:id="@+id/btnAddTask"

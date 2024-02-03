@@ -22,6 +22,7 @@ public class CourseViewModel extends ViewModel {
 
     public void addClass(String className) {
         List<String> currentList = mClassList.getValue();
+        assert currentList != null;
         currentList.add(className);
         mClassList.setValue(currentList);
     }

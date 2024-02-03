@@ -5,6 +5,9 @@ plugins {
 android {
     namespace 'com.example.planningbuddy'
     compileSdk 34
+    viewBinding {
+        enabled = true
+    }
 
     defaultConfig {
         applicationId "com.example.planningbuddy"

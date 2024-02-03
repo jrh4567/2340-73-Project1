@@ -30,7 +30,7 @@ public class CourseFragment extends Fragment {
         View root = binding.getRoot();
 
         final EditText editTextClassName = binding.editTextClassName;
-        Button addButton = binding.btnAddClass;
+        Button addButton = binding.btnAddCourse;
         ListView listViewClasses = binding.textCourses;
 
         addButton.setOnClickListener(new View.OnClickListener() {
