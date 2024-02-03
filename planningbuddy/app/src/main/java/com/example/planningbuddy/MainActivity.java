@@ -1,6 +1,11 @@
 package com.example.planningbuddy;
 
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -11,6 +16,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.planningbuddy.databinding.ActivityMainBinding;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,6 +38,43 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+
+        /** TODO here's the plan:
+         * 1. make seperate popover views for adding courses, todos, and assignments (starting with `add_course_popup.xml`)
+         * 2. use navController.getCurrentDestination() (probably) to figure out which bottom tab the user has selected
+         * 3. use if's to determine which popup to show when the below FAB is clicked.
+         */
+        FloatingActionButton fab = findViewById(R.id.addFAB);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // inflate the layout of the popup window
+                LayoutInflater inflater = (LayoutInflater)
+                        getSystemService(LAYOUT_INFLATER_SERVICE);
+                View popupView = inflater.inflate(R.layout.add_course_popup, null);
+
+                // create the popup window
+                int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+                int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+                boolean focusable = true; // lets taps outside the popup also dismiss it
+                final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+
+                // show the popup window
+                // which view you pass in doesn't matter, it is only used for the window tolken
+                popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+                // dismiss the popup window when touched
+//                popupView.setOnTouchListener(new View.OnTouchListener() {
+//                    @Override
+//                    public boolean onTouch(View v, MotionEvent event) {
+//                        popupWindow.dismiss();
+//                        return true;
+//                    }
+//                });
+            }
+        });
     }
+
+
 
 }
