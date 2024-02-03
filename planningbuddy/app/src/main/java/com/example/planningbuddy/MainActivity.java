@@ -1,22 +1,29 @@
 package com.example.planningbuddy;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.planningbuddy.databinding.ActivityMainBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,19 +52,78 @@ public class MainActivity extends AppCompatActivity {
          * 3. use if's to determine which popup to show when the below FAB is clicked.
          */
         FloatingActionButton fab = findViewById(R.id.addFAB);
-        fab.setOnClickListener(new View.OnClickListener() {
+        int startDestinationId = navController.getGraph().getStartDestination();
+        if (startDestinationId == R.id.navigation_home) {
+            fab.setVisibility(View.GONE);
+        } else {
+            fab.setVisibility(View.VISIBLE);
+        }
+        navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
-            public void onClick(View view) {
-                // inflate the layout of the popup window
-                LayoutInflater inflater = (LayoutInflater)
-                        getSystemService(LAYOUT_INFLATER_SERVICE);
-                View popupView = inflater.inflate(R.layout.add_course_popup, null);
+            public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
+                int currentDestinationId = destination.getId();
 
-                // create the popup window
+                // Update the visibility of the FAB based on the current destination
+                if (currentDestinationId == R.id.navigation_home) {
+                    fab.setVisibility(View.GONE);
+                } else {
+                    fab.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+        fab.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("NonConstantResourceId")
+            @Override
+
+            public void onClick(View view) {
+                // Get the current destination ID
+                int currentDestinationId = Objects.requireNonNull(navController.getCurrentDestination()).getId();
+
+                // Inflate the layout of the popup window based on the current destination
+                int popupLayout;
+                if (currentDestinationId == R.id.navigation_dashboard) {
+                    popupLayout = R.layout.add_assignments_popup;
+                } else if (currentDestinationId == R.id.navigation_notifications) {
+                    popupLayout = R.layout.add_exams_popup;
+                } else if (currentDestinationId == R.id.navigation_courses) {
+                    popupLayout = R.layout.add_course_popup;
+                } else if (currentDestinationId == R.id.navigation_to_do) {
+                    popupLayout = R.layout.add_to_do_popup;
+                } else {
+                    return;
+                }
+
+                LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+                View popupView = inflater.inflate(popupLayout, null);
+
+                // Create the popup window
                 int width = LinearLayout.LayoutParams.WRAP_CONTENT;
                 int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-                boolean focusable = true; // lets taps outside the popup also dismiss it
+                boolean focusable = true;
                 final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+
+                // Show the popup window
+                popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+                // Dismiss the popup window when touched outside
+                popupView.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        popupWindow.dismiss();
+                        return true;
+                    }
+                });
+
+                // inflate the layout of the popup window
+                //LayoutInflater inflater = (LayoutInflater)
+                        getSystemService(LAYOUT_INFLATER_SERVICE);
+                //View popupView = inflater.inflate(R.layout.add_course_popup, null);
+
+                // create the popup window
+                //int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+                //int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+                //boolean focusable = true; // lets taps outside the popup also dismiss it
+                //final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
 
                 // show the popup window
                 // which view you pass in doesn't matter, it is only used for the window tolken
@@ -72,6 +138,7 @@ public class MainActivity extends AppCompatActivity {
 //                    }
 //                });
             }
+
         });
     }
 
