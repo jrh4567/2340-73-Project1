@@ -105,14 +105,14 @@ public class MainActivity extends AppCompatActivity {
                 // Show the popup window
                 popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
 
-                // Dismiss the popup window when touched outside
-                popupView.setOnTouchListener(new View.OnTouchListener() {
-                    @Override
-                    public boolean onTouch(View v, MotionEvent event) {
-                        popupWindow.dismiss();
-                        return true;
-                    }
-                });
+                // Dismiss the popup window when touched *in*side.
+//                popupView.setOnTouchListener(new View.OnTouchListener() {
+//                    @Override
+//                    public boolean onTouch(View v, MotionEvent event) {
+//                        popupWindow.dismiss();
+//                        return true;
+//                    }
+//                });
 
                 // inflate the layout of the popup window
                 //LayoutInflater inflater = (LayoutInflater)
