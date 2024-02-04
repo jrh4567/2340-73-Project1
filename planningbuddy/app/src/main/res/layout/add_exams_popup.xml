@@ -1,6 +1,7 @@
 <!-- add_exam_popup.xml -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/addExamPopup"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -8,15 +9,16 @@
     android:background="#c2f7ca">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/examSubjectInputLayout"
+        android:id="@+id/examNameInputLayout"
         android:layout_width="match_parent"
         android:padding="5dp"
         android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/examNameEditText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Exam Subject" />
+            android:hint="Exam Name" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -24,14 +26,41 @@
         android:layout_width="match_parent"
         android:padding="5dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/examSubjectInputLayout">
+        android:layout_below="@+id/examNameInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/examDateEditText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="Exam Date" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Add other fields specific to exams -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/examCourseInputLayout"
+        android:layout_width="match_parent"
+        android:padding="5dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/examDateInputLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/examCourseEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Exam Course" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/examCompletedCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/examCourseInputLayout"
+        android:text="Completed" />
+    <Button
+        android:id="@+id/addExamButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Exam"
+        android:layout_below="@+id/examCompletedCheckBox"/>
+
 
 </RelativeLayout>

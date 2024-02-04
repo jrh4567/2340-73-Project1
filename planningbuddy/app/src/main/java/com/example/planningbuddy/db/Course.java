@@ -18,6 +18,9 @@ public class Course {
         this.name = name;
         this.meetingTimes = meetingTimes;
     }
+    public Course(String department, int number) {
+        this(department, number, null, null);
+    }
 
     public static void addTask(Course course) {
         currentCourses.add(course);
