@@ -21,6 +21,7 @@ public class NotificationsViewModel extends ViewModel {
     }
 
     public LiveData<List<Task>> getExams() {
+        mExams.setValue(TaskManager.getTasksByType(TaskType.EXAM));
         return mExams;
     }
 }
