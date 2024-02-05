@@ -20,8 +20,8 @@ public class TaskManager {
         taskList.add(task);
         updateLiveData();
     }
-    public static void removeTask(Task task) {
-        taskList.remove(task);
+    public static void removeTask(int position) {
+        taskList.remove(position);
         updateLiveData();
     }
     private static void updateLiveData() {

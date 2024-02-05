@@ -33,7 +33,7 @@ public class ExamAdapter extends ArrayAdapter<Task> {
 
         // Get the current exam
         Task exam = getItem(position);
-
+        final int examPosition = position;
         // Update UI with exam information
         TextView examInfoTextView = convertView.findViewById(R.id.examInfoTextView);
 
@@ -50,7 +50,7 @@ public class ExamAdapter extends ArrayAdapter<Task> {
             notifyDataSetChanged(); // Notify the adapter that the data set has changed
 
             // Remove the item from the underlying data source (TaskManager)
-            TaskManager.removeTask(exam);
+            TaskManager.removeTask(examPosition);
         });
 
         return convertView;

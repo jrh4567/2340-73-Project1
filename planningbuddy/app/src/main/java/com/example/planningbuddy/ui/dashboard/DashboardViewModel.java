@@ -45,7 +45,7 @@ public class DashboardViewModel extends ViewModel {
     private final MutableLiveData<List<Task>> mAssignments;
 
     public DashboardViewModel() {
-        mAssignments = TaskManager.getTaskLiveData();
+        mAssignments = new MutableLiveData<>();
         // Initially, populate the list with all exams
         mAssignments.setValue(TaskManager.getAssignmentsByDate());
     }
@@ -53,4 +53,5 @@ public class DashboardViewModel extends ViewModel {
     public LiveData<List<Task>> getAssignments() {
         return mAssignments;
     }
+
 }

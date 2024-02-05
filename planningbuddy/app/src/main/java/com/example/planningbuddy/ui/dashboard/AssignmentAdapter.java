@@ -33,7 +33,7 @@ public class AssignmentAdapter extends ArrayAdapter<Task> {
 
         // Get the current exam
         Task assignment = getItem(position);
-
+        final int taskPosition = position;
         // Update UI with exam information
         TextView examInfoTextView = convertView.findViewById(R.id.examInfoTextView);
 
@@ -47,10 +47,11 @@ public class AssignmentAdapter extends ArrayAdapter<Task> {
         deleteButton.setOnClickListener(v -> {
             // Handle delete button click
             remove(assignment); // Remove the item from the adapter
+            TaskManager.removeTask(taskPosition);
             notifyDataSetChanged(); // Notify the adapter that the data set has changed
 
             // Remove the item from the underlying data source (TaskManager)
-            TaskManager.removeTask(assignment);
+
         });
 
         return convertView;

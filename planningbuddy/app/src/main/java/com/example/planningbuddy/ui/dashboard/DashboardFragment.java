@@ -190,6 +190,11 @@ public class DashboardFragment extends Fragment {
             assignmentAdapter.addAll(assignments);
             assignmentAdapter.notifyDataSetChanged();
         });
+        dashboardViewModel.getAssignments().observe(getViewLifecycleOwner(), assignments -> {
+            assignmentAdapter.clear();
+            assignmentAdapter.addAll(assignments);
+            assignmentAdapter.notifyDataSetChanged();
+        });
         return root;
     }
 
