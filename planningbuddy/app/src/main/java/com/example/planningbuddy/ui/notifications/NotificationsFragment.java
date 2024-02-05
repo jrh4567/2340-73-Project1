@@ -9,10 +9,12 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -131,8 +133,21 @@ public class NotificationsFragment extends Fragment {
             }
         });
 
-        final TextView textView = binding.textNotifications;
-        notificationsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        // Get the ListView from the layout
+        ListView examsListView = root.findViewById(R.id.examsListView);
+
+        // Create an adapter to populate the ListView with exam data
+        ArrayAdapter<Task> examsAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_list_item_1, TaskManager.getTasksByType(TaskType.EXAM));
+
+        // Set the adapter for the ListView
+        examsListView.setAdapter(examsAdapter);
+
+        // Observe changes in the list of exams and update the adapter
+        notificationsViewModel.getExams().observe(getViewLifecycleOwner(), exams -> {
+            examsAdapter.clear();
+            examsAdapter.addAll(exams);
+            examsAdapter.notifyDataSetChanged();
+        });
         return root;
     }
 
