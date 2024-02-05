@@ -1,5 +1,8 @@
 package com.example.planningbuddy.db;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+
 import com.example.planningbuddy.db.TaskType;
 
 import java.util.ArrayList;
@@ -11,12 +14,18 @@ import java.util.stream.Collectors;
 
 public class TaskManager {
     private static List<Task> taskList = new ArrayList<>();
+    private static MutableLiveData<List<Task>> taskLiveData = new MutableLiveData<>();
 
     public static void addTask(Task task) {
         taskList.add(task);
+        updateLiveData();
     }
     public static void removeTask(Task task) {
         taskList.remove(task);
+        updateLiveData();
+    }
+    private static void updateLiveData() {
+        taskLiveData.setValue(new ArrayList<>(taskList));
     }
 
     public static List<Task> getTasksByType(TaskType type) {
@@ -38,5 +47,8 @@ public class TaskManager {
     }
     public static List<Task> getAllTasks() {
         return new ArrayList<>(taskList);
+    }
+    public static MutableLiveData<List<Task>> getTaskLiveData() {
+        return taskLiveData;
     }
 }

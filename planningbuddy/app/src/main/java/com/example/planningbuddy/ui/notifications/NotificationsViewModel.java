@@ -15,7 +15,7 @@ public class NotificationsViewModel extends ViewModel {
     private final MutableLiveData<List<Task>> mExams;
 
     public NotificationsViewModel() {
-        mExams = new MutableLiveData<>();
+        mExams = TaskManager.getTaskLiveData();
         // Initially, populate the list with all exams
         mExams.setValue(TaskManager.getTasksByType(TaskType.EXAM));
     }
