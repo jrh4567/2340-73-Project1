@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -36,10 +37,12 @@ public class AssignmentAdapter extends ArrayAdapter<Task> {
         final int taskPosition = position;
         // Update UI with exam information
         TextView examInfoTextView = convertView.findViewById(R.id.examInfoTextView);
+        CheckBox completionCheckBox = convertView.findViewById(R.id.completionCheckBox);
 
         if (assignment != null) {
             // Use the toString method to display task information
             examInfoTextView.setText(assignment.toString());
+            completionCheckBox.setChecked(assignment.isCompleted());
         }
 
         // Set up the delete button click listener
@@ -53,6 +56,13 @@ public class AssignmentAdapter extends ArrayAdapter<Task> {
             // Remove the item from the underlying data source (TaskManager)
 
         });
+        completionCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            // Update the completion status when checkbox state changes
+            if (assignment != null) {
+                assignment.setCompleted(isChecked);
+            }
+        });
+
 
         return convertView;
     }
