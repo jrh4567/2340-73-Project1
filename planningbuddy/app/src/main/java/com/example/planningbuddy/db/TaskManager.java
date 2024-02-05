@@ -12,6 +12,9 @@ public class TaskManager {
     public static void addTask(Task task) {
         taskList.add(task);
     }
+    public static void removeTask(Task task) {
+        taskList.remove(task);
+    }
 
     public static List<Task> getTasksByType(TaskType type) {
         return taskList.stream()

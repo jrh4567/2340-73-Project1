@@ -28,8 +28,6 @@ import androidx.navigation.Navigation;
 
 import com.example.planningbuddy.R;
 import com.example.planningbuddy.databinding.FragmentNotificationsBinding;
-import static com.example.planningbuddy.databinding.AddExamsPopupBinding.inflate;
-import com.example.planningbuddy.databinding.AddExamsPopupBinding;
 import com.example.planningbuddy.db.Course;
 import com.example.planningbuddy.db.Task;
 import com.example.planningbuddy.db.TaskManager;
@@ -50,7 +48,6 @@ public class NotificationsFragment extends Fragment {
                 new ViewModelProvider(this).get(NotificationsViewModel.class);
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        AddExamsPopupBinding examPopupBinding = AddExamsPopupBinding.inflate(inflater, null, false);
         FloatingActionButton examFab = binding.examFab;
         examFab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,7 +134,7 @@ public class NotificationsFragment extends Fragment {
         ListView examsListView = root.findViewById(R.id.examsListView);
 
         // Create an adapter to populate the ListView with exam data
-        ArrayAdapter<Task> examsAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_list_item_1, TaskManager.getTasksByType(TaskType.EXAM));
+        ExamAdapter examsAdapter = new ExamAdapter(requireContext(), TaskManager.getTasksByType(TaskType.EXAM));
 
         // Set the adapter for the ListView
         examsListView.setAdapter(examsAdapter);
