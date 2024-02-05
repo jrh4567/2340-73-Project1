@@ -1,5 +1,7 @@
 package com.example.planningbuddy.db;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -21,8 +23,10 @@ public class TaskManager {
         updateLiveData();
     }
     public static void removeTask(int position) {
+        Log.d("TASKMANAGER", "removeTask");
         taskList.remove(position);
         updateLiveData();
+        Log.d("TASKMANAGER", "taskLiveData: " + taskLiveData.getValue().toString());
     }
     private static void updateLiveData() {
         taskLiveData.setValue(new ArrayList<>(taskList));
