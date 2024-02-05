@@ -3,6 +3,9 @@ package com.example.planningbuddy.db;
 import com.example.planningbuddy.db.TaskType;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,7 +24,18 @@ public class TaskManager {
                 .filter(task -> task.getType() == type)
                 .collect(Collectors.toList());
     }
-
+    public static List<Task> getAssignmentsByDate() {
+        return taskList.stream()
+                .filter(task -> task.getType() == TaskType.ASSIGNMENT && task.getDueDate() != null)
+                .sorted(Comparator.comparing(Task::getDueDate))
+                .collect(Collectors.toList());
+    }
+    public static List<Task> getAssignmentsByCourse() {
+        return taskList.stream()
+                .filter(task -> task.getType() == TaskType.ASSIGNMENT && task.getAssociatedCourse() != null)
+                .sorted(Comparator.comparing(Task::getAssociatedCourse))
+                .collect(Collectors.toList());
+    }
     public static List<Task> getAllTasks() {
         return new ArrayList<>(taskList);
     }

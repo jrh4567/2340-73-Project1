@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class Course {
+public class Course implements Comparable<Course> {
     private String department;
     private int number;
     private String name;
@@ -72,6 +72,30 @@ public class Course {
 
     public void setMeetingTimes(MeetingTime[] meetingTimes) {
         this.meetingTimes = meetingTimes;
+    }
+    public int compareTo(Course other) {
+        // Compare based on department
+        int departmentComparison = this.department.compareTo(other.department);
+        if (departmentComparison != 0) {
+            return departmentComparison;
+        }
+
+        // Compare based on number
+        int numberComparison = Integer.compare(this.number, other.number);
+        if (numberComparison != 0) {
+            return numberComparison;
+        }
+
+        // Compare based on name
+        if (this.name == null && other.name == null) {
+            return 0;
+        } else if (this.name == null) {
+            return -1;
+        } else if (other.name == null) {
+            return 1;
+        } else {
+            return this.name.compareTo(other.name);
+        }
     }
 
     public static class MeetingTime {

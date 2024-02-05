@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -17,6 +18,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,14 +31,13 @@ import androidx.navigation.Navigation;
 
 import com.example.planningbuddy.R;
 import com.example.planningbuddy.databinding.FragmentDashboardBinding;
-import com.example.planningbuddy.databinding.FragmentNotificationsBinding;
+
 import com.example.planningbuddy.db.Course;
 import com.example.planningbuddy.db.Task;
 import com.example.planningbuddy.db.TaskManager;
 import com.example.planningbuddy.db.TaskType;
 import com.example.planningbuddy.ui.dashboard.AssignmentAdapter;
-import com.example.planningbuddy.ui.notifications.ExamAdapter;
-import com.example.planningbuddy.ui.notifications.NotificationsViewModel;
+
 import com.example.planningbuddy.ui.dashboard.DashboardViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -134,13 +135,52 @@ public class DashboardFragment extends Fragment {
                 });
             }
         });
+        // spinner code for functionality
+        /**Spinner sortSpinner = binding.sortSpinner;
 
+        //Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(
+                requireContext(),
+                R.array.sort_options, // Define string array in resources with "Sort by Course" and "Sort by Date" options
+                android.R.layout.simple_spinner_item
+        );
+
+        // Specify the layout to use when the list of choices appears
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // Apply the adapter to the spinner
+        sortSpinner.setAdapter(spinnerAdapter);
+
+        // Set a selection listener for the spinner
+        sortSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // Handle selection
+                String selectedItem = parentView.getItemAtPosition(position).toString();
+                if (selectedItem.equals("Sort by Course")) {
+                    dashboardViewModel.setSortByDate(false);
+                } else if (selectedItem.equals("Sort by Date")) {
+                    dashboardViewModel.setSortByDate(true);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // Do nothing here
+            }
+        });
+         */
         // Get the ListView from the layout
         ListView assignmentListView = root.findViewById(R.id.assignmentListView);
+        AssignmentAdapter assignmentAdapter;
 
-        // Create an adapter to populate the ListView with exam data
-        AssignmentAdapter assignmentAdapter = new AssignmentAdapter(requireContext(), TaskManager.getTasksByType(TaskType.ASSIGNMENT));
-
+        // to set filter by course or date
+        /**if (dashboardViewModel.getSortByDate()) {
+            assignmentAdapter = new AssignmentAdapter(requireContext(), TaskManager.getAssignmentsByDate());
+        } else {
+            assignmentAdapter = new AssignmentAdapter(requireContext(), TaskManager.getAssignmentsByCourse());
+        } */
+        assignmentAdapter = new AssignmentAdapter(requireContext(), TaskManager.getAssignmentsByDate());
         // Set the adapter for the ListView
         assignmentListView.setAdapter(assignmentAdapter);
 
