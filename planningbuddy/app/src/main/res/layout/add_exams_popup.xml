@@ -32,7 +32,7 @@
             android:id="@+id/examDateEditText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Exam Date" />
+            android:hint="Exam Date (yyyy-mm-dd)" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout

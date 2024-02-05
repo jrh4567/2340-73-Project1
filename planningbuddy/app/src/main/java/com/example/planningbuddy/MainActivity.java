@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
          * 2. use navController.getCurrentDestination() (probably) to figure out which bottom tab the user has selected
          * 3. use if's to determine which popup to show when the below FAB is clicked.
          */
+        /**
         FloatingActionButton fab = findViewById(R.id.addFAB);
         int startDestinationId = navController.getGraph().getStartDestination();
         if (startDestinationId == R.id.navigation_home) {
@@ -113,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
                 addExamButton.setOnClickListener(l -> {
                     Log.d("BUTTON", "onClick: clicked");
                 });
+
                 // Dismiss the popup window when touched *in*side.
 //                popupView.setOnTouchListener(new View.OnTouchListener() {
 //                    @Override
@@ -147,7 +149,9 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+         */
     }
+
 
 
 
