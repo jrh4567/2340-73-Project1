@@ -13,7 +13,7 @@
     <string name="title_todo">TODO</string>
     <string name="title_courses">Courses</string>
     <string-array name="sort_options">
-        <item>Sort by Course</item>
         <item>Sort by Date</item>
+        <item>Sort by Course</item>
     </string-array>
 </resources>

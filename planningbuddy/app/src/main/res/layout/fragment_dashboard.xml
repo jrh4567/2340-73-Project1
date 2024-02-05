@@ -33,19 +33,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_dashboard" />
-    <Spinner
-        android:id="@+id/sortSpinner"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/assignmentListView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"/>
+
 
     <ListView
         android:id="@+id/assignmentListView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:divider="@android:color/darker_gray"
-        android:dividerHeight="1dp"/>
+        app:layout_constraintTop_toBottomOf="@+id/sortSpinner"
+        android:dividerHeight="1dp">
+    </ListView>
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/sortSpinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </androidx.appcompat.widget.AppCompatSpinner>
 </androidx.constraintlayout.widget.ConstraintLayout>

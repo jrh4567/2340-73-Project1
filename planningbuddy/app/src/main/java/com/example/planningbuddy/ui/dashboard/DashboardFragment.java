@@ -136,7 +136,7 @@ public class DashboardFragment extends Fragment {
             }
         });
         // spinner code for functionality
-        /**Spinner sortSpinner = binding.sortSpinner;
+        Spinner sortSpinner = binding.sortSpinner;
 
         //Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(
@@ -169,18 +169,17 @@ public class DashboardFragment extends Fragment {
                 // Do nothing here
             }
         });
-         */
         // Get the ListView from the layout
         ListView assignmentListView = root.findViewById(R.id.assignmentListView);
         AssignmentAdapter assignmentAdapter;
 
         // to set filter by course or date
-        /**if (dashboardViewModel.getSortByDate()) {
+        if (dashboardViewModel.getSortByDate()) {
             assignmentAdapter = new AssignmentAdapter(requireContext(), TaskManager.getAssignmentsByDate());
         } else {
             assignmentAdapter = new AssignmentAdapter(requireContext(), TaskManager.getAssignmentsByCourse());
-        } */
-        assignmentAdapter = new AssignmentAdapter(requireContext(), TaskManager.getAssignmentsByDate());
+        }
+        //assignmentAdapter = new AssignmentAdapter(requireContext(), TaskManager.getAssignmentsByDate());
         // Set the adapter for the ListView
         assignmentListView.setAdapter(assignmentAdapter);
 

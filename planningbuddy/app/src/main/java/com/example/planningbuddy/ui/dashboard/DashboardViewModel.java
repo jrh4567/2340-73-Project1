@@ -12,7 +12,7 @@ import java.util.List;
 
 public class DashboardViewModel extends ViewModel {
     //commented out code is to display sort by date or sort by course depending on input from spinner
-    /**private final MutableLiveData<List<Task>> mAssignments;
+    private final MutableLiveData<List<Task>> mAssignments;
     private final MutableLiveData<Boolean> mSortByDate;
 
     public DashboardViewModel() {
@@ -22,6 +22,7 @@ public class DashboardViewModel extends ViewModel {
     }
 
     public LiveData<List<Task>> getAssignments() {
+        updateAssignments();
         return mAssignments;
     }
 
@@ -41,7 +42,7 @@ public class DashboardViewModel extends ViewModel {
             mAssignments.setValue(TaskManager.getAssignmentsByCourse());
         }
     }
-     */
+    /**
     private final MutableLiveData<List<Task>> mAssignments;
 
     public DashboardViewModel() {
@@ -51,7 +52,8 @@ public class DashboardViewModel extends ViewModel {
     }
 
     public LiveData<List<Task>> getAssignments() {
+        mAssignments.setValue(TaskManager.getAssignmentsByDate());
         return mAssignments;
-    }
+    } */
 
 }
