@@ -1,5 +1,8 @@
 package com.example.planningbuddy.ui.notifications;
 
+import static android.content.Context.LAYOUT_INFLATER_SERVICE;
+import static androidx.core.content.ContextCompat.getSystemService;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,6 +19,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.planningbuddy.R;
 import com.example.planningbuddy.databinding.FragmentNotificationsBinding;
 import static com.example.planningbuddy.databinding.AddExamsPopupBinding.inflate;
 import com.example.planningbuddy.databinding.AddExamsPopupBinding;
@@ -38,15 +42,17 @@ public class NotificationsFragment extends Fragment {
                 new ViewModelProvider(this).get(NotificationsViewModel.class);
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        AddExamsPopupBinding examPopupBinding = AddExamsPopupBinding.inflate(inflater, container, false);
+        AddExamsPopupBinding examPopupBinding = AddExamsPopupBinding.inflate(inflater, null, false);
 
-        Button addExamButton = examPopupBinding.addExamButton;
+        View popupView = examPopupBinding.getRoot(); //i don't think this is working right, but i don't know how else to get the view
+
+        Button addExamButton = (Button) popupView.findViewById(R.id.addExamButton);
         EditText examNameEditText = examPopupBinding.examNameEditText;
         EditText examDateEditText = examPopupBinding.examDateEditText;
         EditText examCourseEditText = examPopupBinding.examCourseEditText;
         CheckBox examCompletedCheckBox = examPopupBinding.examCompletedCheckBox;
-        addExamButton.isClickable();
-        examPopupBinding.addExamButton.setOnClickListener(new View.OnClickListener() {
+//        addExamButton.setClickable(true);
+        addExamButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d("AddExamButton", "Button clicked!");

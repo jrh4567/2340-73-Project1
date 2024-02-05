@@ -2,10 +2,12 @@ package com.example.planningbuddy;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
@@ -101,10 +103,16 @@ public class MainActivity extends AppCompatActivity {
                 int height = LinearLayout.LayoutParams.WRAP_CONTENT;
                 boolean focusable = true;
                 final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
-
+                popupWindow.setTouchable(true);
+                popupWindow.update();
                 // Show the popup window
                 popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
 
+                // the error is wrong and i am right.
+                Button addExamButton = (Button) popupView.findViewById(R.id.addExamButton);
+                addExamButton.setOnClickListener(l -> {
+                    Log.d("BUTTON", "onClick: clicked");
+                });
                 // Dismiss the popup window when touched *in*side.
 //                popupView.setOnTouchListener(new View.OnTouchListener() {
 //                    @Override
