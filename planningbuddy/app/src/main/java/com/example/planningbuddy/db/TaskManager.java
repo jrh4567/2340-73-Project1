@@ -23,10 +23,12 @@ public class TaskManager {
         updateLiveData();
     }
     public static void removeTask(int position) {
-        Log.d("TASKMANAGER", "removeTask");
         taskList.remove(position);
         updateLiveData();
-        Log.d("TASKMANAGER", "taskLiveData: " + taskLiveData.getValue().toString());
+    }
+    public static void updateTask(int position, Task task) {
+        taskList.set(position, task);
+        updateLiveData();
     }
     private static void updateLiveData() {
         taskLiveData.setValue(new ArrayList<>(taskList));
