@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
+                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications, R.id.navigation_courses, R.id.navigation_to_do)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
@@ -115,8 +115,7 @@ public class MainActivity extends AppCompatActivity {
 //                });
 
                 // inflate the layout of the popup window
-                //LayoutInflater inflater = (LayoutInflater)
-                        getSystemService(LAYOUT_INFLATER_SERVICE);
+                //LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
                 //View popupView = inflater.inflate(R.layout.add_course_popup, null);
 
                 // create the popup window
@@ -127,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
 
                 // show the popup window
                 // which view you pass in doesn't matter, it is only used for the window tolken
-                popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+//                popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
 
                 // dismiss the popup window when touched
 //                popupView.setOnTouchListener(new View.OnTouchListener() {
