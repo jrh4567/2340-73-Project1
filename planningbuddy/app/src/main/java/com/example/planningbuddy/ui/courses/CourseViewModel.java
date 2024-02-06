@@ -18,7 +18,6 @@ public class CourseViewModel extends ViewModel {
 
     public CourseViewModel() {
         mCourse = new MutableLiveData<>();
-        // Initially, populate the list with all exams
         mCourse.setValue(TaskManager.getAllCourses());
     }
 

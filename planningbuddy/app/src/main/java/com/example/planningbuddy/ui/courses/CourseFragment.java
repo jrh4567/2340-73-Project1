@@ -96,7 +96,7 @@ public class CourseFragment extends Fragment {
                         return "";
                     }
                     private void openCoursePopup() {
-                        // Get exam details from the popup
+                        // get course details
                         String department = courseDepartmentInputLayout.getEditText().getText().toString();
                         String numberStr = courseNumberInputLayout.getEditText().getText().toString();
                         String name = courseNameInputLayout.getEditText().getText().toString();
@@ -105,7 +105,7 @@ public class CourseFragment extends Fragment {
                         String startDateStr = editTextStartDate.getText().toString();
                         String endDateStr = editTextEndDate.getText().toString();
 
-                        // Validate and create the Task object (TaskType.EXAM)
+                        // create course obj
                         if (!department.isEmpty() && !numberStr.isEmpty() && !name.isEmpty() && !type.isEmpty() && !startDateStr.isEmpty() && !endDateStr.isEmpty()) {
                             // Format the date using SimpleDateFormat
                             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -117,7 +117,7 @@ public class CourseFragment extends Fragment {
                             } catch (ParseException e) {
                                 Toast.makeText(getContext(), "Invalid date format", Toast.LENGTH_SHORT).show();
                                 NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
-                                navController.navigate(R.id.navigation_courses); // Change the destination ID accordingly
+                                navController.navigate(R.id.navigation_courses);
                             }
 
                             // Convert type to MeetingType
@@ -130,12 +130,12 @@ public class CourseFragment extends Fragment {
                             // Notify user and clear the input fields
                             Toast.makeText(getContext(), "Course added!", Toast.LENGTH_SHORT).show();
                             NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
-                            navController.navigate(R.id.navigation_courses); // Change the destination ID accordingly
+                            navController.navigate(R.id.navigation_courses);
 
                         } else {
                             Toast.makeText(getContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show();
                             NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
-                            navController.navigate(R.id.navigation_to_do); // Change the destination ID accordingly
+                            navController.navigate(R.id.navigation_to_do);
                         }
                     }
                 });
@@ -145,13 +145,13 @@ public class CourseFragment extends Fragment {
         // Get the ListView from the layout
         ListView courseListView = root.findViewById(R.id.courseListView);
 
-        // Create an adapter to populate the ListView with exam data
+        // adapter for course
         CourseAdapter courseAdapter = new CourseAdapter(requireContext(), TaskManager.getAllCourses());
 
         // Set the adapter for the ListView
         courseListView.setAdapter(courseAdapter);
 
-        // Observe changes in the list of exams and update the adapter
+        // Observe changes in course list
         courseViewModel.getCourses().observe(getViewLifecycleOwner(), todo -> {
             courseAdapter.clear();
             courseAdapter.addAll(todo);

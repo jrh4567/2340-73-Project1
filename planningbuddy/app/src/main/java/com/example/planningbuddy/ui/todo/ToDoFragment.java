@@ -96,14 +96,14 @@ public class ToDoFragment extends Fragment {
                                 navController.navigate(R.id.navigation_to_do); // Change the destination ID accordingly
                             }
 
-                            // Create a Course object based on the user input (modify this as needed)
+                            // Create a Course object based on the user input
                             String[] courseParts = todoCourse.split(" ");
                             if (courseParts.length >= 2) {
                                 String departmentCode = courseParts[0];
                                 int courseNumber = Integer.parseInt(courseParts[1]);
                                 Course associatedCourse = new Course(departmentCode, courseNumber);
 
-                                // Create the Task object (TaskType.EXAM)
+                                // Create task obj of to do type
                                 Task todo = new Task(todoName, examDate, TaskType.TODO, associatedCourse, isCompleted);
 
                                 // Add the Task object to the TaskManager
@@ -116,17 +116,17 @@ public class ToDoFragment extends Fragment {
                                 todoCourseEditText.setText("");
                                 todoCompletedCheckBox.setChecked(false);
                                 NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
-                                navController.navigate(R.id.navigation_to_do); // Change the destination ID accordingly
+                                navController.navigate(R.id.navigation_to_do);
                             } else {
                                 Toast.makeText(getContext(), "Invalid course format", Toast.LENGTH_SHORT).show();
                                 NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
-                                navController.navigate(R.id.navigation_to_do); // Change the destination ID accordingly
+                                navController.navigate(R.id.navigation_to_do);
                             }
 
                         } else {
                             Toast.makeText(getContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show();
                             NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
-                            navController.navigate(R.id.navigation_to_do); // Change the destination ID accordingly
+                            navController.navigate(R.id.navigation_to_do);
                         }
                     }
                 });
@@ -136,13 +136,13 @@ public class ToDoFragment extends Fragment {
         // Get the ListView from the layout
         ListView todoListView = binding.todoListView;
 
-        // Create an adapter to populate the ListView with exam data
+        // Create an adapter
         ToDoAdapter todoAdapter = new ToDoAdapter(requireContext(), TaskManager.getTasksByType(TaskType.TODO));
 
         // Set the adapter for the ListView
         todoListView.setAdapter(todoAdapter);
 
-        // Observe changes in the list of exams and update the adapter
+        // Observe changes and update
         todoViewModel.getToDos().observe(getViewLifecycleOwner(), todo -> {
             todoAdapter.clear();
             todoAdapter.addAll(todo);

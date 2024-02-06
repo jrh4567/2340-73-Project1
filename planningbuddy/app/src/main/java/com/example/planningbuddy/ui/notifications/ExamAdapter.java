@@ -108,7 +108,7 @@ public class ExamAdapter extends ArrayAdapter<Task> {
                     String examLocation = examLocationEditText.getText().toString();
                     boolean isCompleted = examCompletedCheckBox.isChecked();
 
-                    // Validate and create the Task object (TaskType.EXAM)
+                    // create exam obj
                     if (!examName.isEmpty() && !examDateStr.isEmpty() && !examCourse.isEmpty() && !examLocation.isEmpty()) {
                         // Format the date using SimpleDateFormat
                         Date examDate = null;
@@ -119,17 +119,17 @@ public class ExamAdapter extends ArrayAdapter<Task> {
                             popupWindow.dismiss();
                             //TODO: fix this navController code
 //                            NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
-//                            navController.navigate(R.id.navigation_notifications); // Change the destination ID accordingly
+//                            navController.navigate(R.id.navigation_notifications);
                         }
 
-                        // Create a Course object based on the user input (modify this as needed)
+                        // Create a Course object based on the user input
                         String[] courseParts = examCourse.split(" ");
                         if (courseParts.length >= 2) {
                             String departmentCode = courseParts[0];
                             int courseNumber = Integer.parseInt(courseParts[1]);
                             Course associatedCourse = new Course(departmentCode, courseNumber);
 
-                            // Edit the Task object (TaskType.EXAM)
+                            // edit exam obj
                             exam.setName(examName);
                             exam.setDueDate(examDate);
                             exam.setAssociatedCourse(associatedCourse);
@@ -150,32 +150,29 @@ public class ExamAdapter extends ArrayAdapter<Task> {
                             examCompletedCheckBox.setChecked(false);
                             popupWindow.dismiss();
 //                            NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
-//                            navController.navigate(R.id.navigation_notifications); // Change the destination ID accordingly
+//                            navController.navigate(R.id.navigation_notifications);
                         } else {
                             Toast.makeText(getContext(), "Invalid course format", Toast.LENGTH_SHORT).show();
                             popupWindow.dismiss();
 //                            NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
-//                            navController.navigate(R.id.navigation_notifications); // Change the destination ID accordingly
+//                            navController.navigate(R.id.navigation_notifications);
                         }
 
                     } else {
                         Toast.makeText(getContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show();
                         popupWindow.dismiss();
 //                        NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
-//                        navController.navigate(R.id.navigation_notifications); // Change the destination ID accordingly
+//                        navController.navigate(R.id.navigation_notifications);
                     }
                 }
             });
         });
 
-        // Set up the delete button click listener
         ImageButton deleteButton = convertView.findViewById(R.id.deleteButton);
         deleteButton.setOnClickListener(v -> {
-            // Handle delete button click
             remove(exam); // Remove the item from the adapter
             notifyDataSetChanged(); // Notify the adapter that the data set has changed
 
-            // Remove the item from the underlying data source (TaskManager)
             TaskManager.removeTask(examPosition);
         });
         completionCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {

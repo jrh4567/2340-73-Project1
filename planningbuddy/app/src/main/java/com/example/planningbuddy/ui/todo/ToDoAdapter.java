@@ -43,10 +43,10 @@ public class ToDoAdapter extends ArrayAdapter<Task> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_task_item, parent, false);
         }
 
-        // Get the current exam
+        // Get the current todo
         Task todo = getItem(position);
         final int todoPosition = position;
-        // Update UI with exam information
+        // Update with todo info
         TextView todoInfoTextView = convertView.findViewById(R.id.examInfoTextView);
         CheckBox completionCheckBox = convertView.findViewById(R.id.completionCheckBox);
 
@@ -59,15 +59,13 @@ public class ToDoAdapter extends ArrayAdapter<Task> {
         // Set up the delete button click listener
         ImageButton deleteButton = convertView.findViewById(R.id.deleteButton);
         deleteButton.setOnClickListener(v -> {
-            // Handle delete button click
             remove(todo); // Remove the item from the adapter
             notifyDataSetChanged(); // Notify the adapter that the data set has changed
 
-            // Remove the item from the underlying data source (TaskManager)
+            // remove from dataset
             TaskManager.removeTask(todoPosition);
         });
         completionCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            // Update the completion status when checkbox state changes
             if (todo != null) {
                 todo.setCompleted(isChecked);
             }
@@ -120,14 +118,13 @@ public class ToDoAdapter extends ArrayAdapter<Task> {
 //                            navController.navigate(R.id.navigation_notifications); // Change the destination ID accordingly
                         }
 
-                        // Create a Course object based on the user input (modify this as needed)
+                        // Create a Course object based on the user input
                         String[] courseParts = todoCourse.split(" ");
                         if (courseParts.length >= 2) {
                             String departmentCode = courseParts[0];
                             int courseNumber = Integer.parseInt(courseParts[1]);
                             Course associatedCourse = new Course(departmentCode, courseNumber);
 
-                            // Edit the Task object (TaskType.EXAM)
                             todo.setName(todoName);
                             todo.setDueDate(todoDate);
                             todo.setAssociatedCourse(associatedCourse);
