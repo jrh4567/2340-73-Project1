@@ -136,6 +136,7 @@ public class ExamAdapter extends ArrayAdapter<Task> {
                             TaskManager.updateTask(examPosition, exam);
                             notifyDataSetChanged();
 
+
                             // Notify user and clear the input fields
                             Toast.makeText(getContext(), "Exam updated!", Toast.LENGTH_SHORT).show();
                             examNameEditText.setText("");
@@ -178,6 +179,7 @@ public class ExamAdapter extends ArrayAdapter<Task> {
                 exam.setCompleted(isChecked);
             }
         });
+
 
 
 

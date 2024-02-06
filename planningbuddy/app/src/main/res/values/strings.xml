@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">PlanningBuddy</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_dashboard">Assignments</string>
+    <string name="title_notifications">Exams</string>
     <string name="ToDoList">To Do List</string>
     <string name="Assigments">Assigments</string>
     <string name="Exams">Exams</string>
@@ -10,7 +10,7 @@
     <string name="add_task">Add Task</string>
     <string name="add_course">Add Course</string>
     <string name="enter_class_name">Enter Class Name</string>
-    <string name="title_todo">TODO</string>
+    <string name="title_todo">To Do</string>
     <string name="title_courses">Courses</string>
     <string-array name="sort_options">
         <item>Sort by Date</item>

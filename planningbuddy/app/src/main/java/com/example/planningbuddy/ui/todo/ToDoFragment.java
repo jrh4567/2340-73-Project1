@@ -77,13 +77,13 @@ public class ToDoFragment extends Fragment {
                         openToDoPopup();
                     }
                     private void openToDoPopup() {
-                        // Get exam details from the popup
+                        // input from popup
                         String todoName = todoNameEditText.getText().toString();
                         String todoDateStr = todoDateEditText.getText().toString();
                         String todoCourse = todoCourseEditText.getText().toString();
                         boolean isCompleted = todoCompletedCheckBox.isChecked();
 
-                        // Validate and create the Task object (TaskType.EXAM)
+                        // Validate and create the Task object (to do)
                         if (!todoName.isEmpty() && !todoDateStr.isEmpty() && !todoCourse.isEmpty()) {
                             // Format the date using SimpleDateFormat
                             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -104,10 +104,10 @@ public class ToDoFragment extends Fragment {
                                 Course associatedCourse = new Course(departmentCode, courseNumber);
 
                                 // Create the Task object (TaskType.EXAM)
-                                Task exam = new Task(todoName, examDate, TaskType.EXAM, associatedCourse, isCompleted);
+                                Task todo = new Task(todoName, examDate, TaskType.TODO, associatedCourse, isCompleted);
 
                                 // Add the Task object to the TaskManager
-                                TaskManager.addTask(exam);
+                                TaskManager.addTask(todo);
 
                                 // Notify user and clear the input fields
                                 Toast.makeText(getContext(), "To do added!", Toast.LENGTH_SHORT).show();
