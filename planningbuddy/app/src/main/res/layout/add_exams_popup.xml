@@ -47,12 +47,25 @@
             android:layout_height="match_parent"
             android:hint="Exam Course" />
     </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/examLocationInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/examCourseInputLayout"
+        android:padding="5dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/examLocationEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Exam Location" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.checkbox.MaterialCheckBox
         android:id="@+id/examCompletedCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/examCourseInputLayout"
+        android:layout_below="@+id/examLocationInputLayout"
         android:text="Completed" />
 
     <Button

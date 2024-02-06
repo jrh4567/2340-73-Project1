@@ -66,6 +66,7 @@ public class NotificationsFragment extends Fragment {
                 EditText examNameEditText = popupView.findViewById(R.id.examNameEditText);
                 EditText examDateEditText = popupView.findViewById(R.id.examDateEditText);
                 EditText examCourseEditText = popupView.findViewById(R.id.examCourseEditText);
+                EditText examLocationEditText = popupView.findViewById(R.id.examLocationEditText);
                 CheckBox examCompletedCheckBox = popupView.findViewById(R.id.examCompletedCheckBox);
                 addExamButton.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -78,10 +79,11 @@ public class NotificationsFragment extends Fragment {
                         String examName = examNameEditText.getText().toString();
                         String examDateStr = examDateEditText.getText().toString();
                         String examCourse = examCourseEditText.getText().toString();
+                        String examLocation = examLocationEditText.getText().toString();
                         boolean isCompleted = examCompletedCheckBox.isChecked();
 
                         // Validate and create the Task object (TaskType.EXAM)
-                        if (!examName.isEmpty() && !examDateStr.isEmpty() && !examCourse.isEmpty()) {
+                        if (!examName.isEmpty() && !examDateStr.isEmpty() && !examCourse.isEmpty() && !examLocation.isEmpty()) {
                             // Format the date using SimpleDateFormat
                             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                             Date examDate = null;
@@ -101,7 +103,7 @@ public class NotificationsFragment extends Fragment {
                                 Course associatedCourse = new Course(departmentCode, courseNumber);
 
                                 // Create the Task object (TaskType.EXAM)
-                                Task exam = new Task(examName, examDate, TaskType.EXAM, associatedCourse, isCompleted);
+                                Task exam = new Task(examName, examDate, TaskType.EXAM, associatedCourse, isCompleted, examLocation);
 
                                 // Add the Task object to the TaskManager
                                 TaskManager.addTask(exam);
@@ -112,6 +114,7 @@ public class NotificationsFragment extends Fragment {
                                 examDateEditText.setText("");
                                 examCourseEditText.setText("");
                                 examCompletedCheckBox.setChecked(false);
+                                examLocationEditText.setText("");
                                 NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
                                 navController.navigate(R.id.navigation_notifications); // Change the destination ID accordingly
                             } else {

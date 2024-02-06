@@ -63,7 +63,7 @@ public class ExamAdapter extends ArrayAdapter<Task> {
 
         if (exam != null) {
             // Use the toString method to display task information
-            examInfoTextView.setText(exam.toString());
+            examInfoTextView.setText(exam.toStringExam());
             completionCheckBox.setChecked(exam.isCompleted());
         }
 
@@ -83,6 +83,7 @@ public class ExamAdapter extends ArrayAdapter<Task> {
             EditText examNameEditText = popupView.findViewById(R.id.examNameEditText);
             EditText examDateEditText = popupView.findViewById(R.id.examDateEditText);
             EditText examCourseEditText = popupView.findViewById(R.id.examCourseEditText);
+            EditText examLocationEditText = popupView.findViewById(R.id.examLocationEditText);
             CheckBox examCompletedCheckBox = popupView.findViewById(R.id.examCompletedCheckBox);
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -91,6 +92,7 @@ public class ExamAdapter extends ArrayAdapter<Task> {
             examDateEditText.setText(dateFormat.format(exam.getDueDate()));
             examCourseEditText.setText(exam.getAssociatedCourse().getDepartment() + " " + exam.getAssociatedCourse().getNumber());
             examCompletedCheckBox.setChecked(exam.isCompleted());
+            examLocationEditText.setText(exam.getLocation());
 
             addExamButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -103,10 +105,11 @@ public class ExamAdapter extends ArrayAdapter<Task> {
                     String examName = examNameEditText.getText().toString();
                     String examDateStr = examDateEditText.getText().toString();
                     String examCourse = examCourseEditText.getText().toString();
+                    String examLocation = examLocationEditText.getText().toString();
                     boolean isCompleted = examCompletedCheckBox.isChecked();
 
                     // Validate and create the Task object (TaskType.EXAM)
-                    if (!examName.isEmpty() && !examDateStr.isEmpty() && !examCourse.isEmpty()) {
+                    if (!examName.isEmpty() && !examDateStr.isEmpty() && !examCourse.isEmpty() && !examLocation.isEmpty()) {
                         // Format the date using SimpleDateFormat
                         Date examDate = null;
                         try {
@@ -131,6 +134,7 @@ public class ExamAdapter extends ArrayAdapter<Task> {
                             exam.setDueDate(examDate);
                             exam.setAssociatedCourse(associatedCourse);
                             exam.setCompleted(isCompleted);
+                            exam.setLocation(examLocation);
 
                             // Add the Task object to the TaskManager
                             TaskManager.updateTask(examPosition, exam);
@@ -142,6 +146,7 @@ public class ExamAdapter extends ArrayAdapter<Task> {
                             examNameEditText.setText("");
                             examDateEditText.setText("");
                             examCourseEditText.setText("");
+                            examLocationEditText.setText("");
                             examCompletedCheckBox.setChecked(false);
                             popupWindow.dismiss();
 //                            NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
