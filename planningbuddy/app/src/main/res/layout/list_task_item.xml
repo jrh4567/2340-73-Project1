@@ -1,17 +1,19 @@
-
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/background"
     android:orientation="horizontal"
     android:padding="8dp">
+
     <CheckBox
         android:id="@+id/completionCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"/>
+        android:layout_marginRight="8dp"
+        android:buttonTint="@color/white" />
 
     <!-- TextView to display task information -->
     <TextView
@@ -19,15 +21,17 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:textColor="@color/white"
         android:textSize="16sp"
-        android:textColor="@android:color/black"/>
+        tools:text="This is test text." />
 
     <!-- Delete Button -->
     <ImageButton
         android:id="@+id/deleteButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="?android:selectableItemBackground"
         android:src="@android:drawable/ic_menu_delete"
-        android:background="?android:selectableItemBackground"/>
+        android:tint="@color/white" />
 
 </LinearLayout>

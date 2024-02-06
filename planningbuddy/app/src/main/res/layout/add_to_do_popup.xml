@@ -1,18 +1,17 @@
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/addtodoPopup"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:padding="20dp"
-    android:background="#c2f7ca">
+    android:background="@color/accentbg"
+    android:padding="20dp">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/todoNameInputLayout"
         android:layout_width="match_parent"
-        android:padding="5dp"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="5dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/todoNameEditText"
@@ -24,9 +23,9 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/todoDateInputLayout"
         android:layout_width="match_parent"
-        android:padding="5dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/todoNameInputLayout">
+        android:layout_below="@+id/todoNameInputLayout"
+        android:padding="5dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/todoDateEditText"
@@ -38,9 +37,9 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/todoCourseInputLayout"
         android:layout_width="match_parent"
-        android:padding="5dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/todoDateInputLayout">
+        android:layout_below="@+id/todoDateInputLayout"
+        android:padding="5dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/todoCourseEditText"
@@ -55,12 +54,14 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/todoCourseInputLayout"
         android:text="Completed" />
+
     <Button
         android:id="@+id/addToDoButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add To Do"
-        android:layout_below="@+id/todoCompletedCheckBox"/>
+        android:layout_below="@+id/todoCompletedCheckBox"
+        android:backgroundTint="@color/accent"
+        android:text="Add To Do" />
 
 
 </RelativeLayout>

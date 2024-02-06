@@ -1,18 +1,17 @@
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/addExamPopup"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:padding="20dp"
-    android:background="#c2f7ca">
+    android:background="@color/accentbg"
+    android:padding="20dp">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/examNameInputLayout"
         android:layout_width="match_parent"
-        android:padding="5dp"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="5dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/examNameEditText"
@@ -24,9 +23,9 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/examDateInputLayout"
         android:layout_width="match_parent"
-        android:padding="5dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/examNameInputLayout">
+        android:layout_below="@+id/examNameInputLayout"
+        android:padding="5dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/examDateEditText"
@@ -38,9 +37,9 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/examCourseInputLayout"
         android:layout_width="match_parent"
-        android:padding="5dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/examDateInputLayout">
+        android:layout_below="@+id/examDateInputLayout"
+        android:padding="5dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/examCourseEditText"
@@ -55,12 +54,14 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/examCourseInputLayout"
         android:text="Completed" />
+
     <Button
         android:id="@+id/addExamButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Exam"
-        android:layout_below="@+id/examCompletedCheckBox"/>
+        android:layout_below="@+id/examCompletedCheckBox"
+        android:backgroundTint="@color/accent"
+        android:text="Add Exam" />
 
 
 </RelativeLayout>
