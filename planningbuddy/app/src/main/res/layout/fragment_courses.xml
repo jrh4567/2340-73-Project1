@@ -4,51 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey"
     tools:context=".ui.courses.CourseFragment">
-
-    <ListView
-        android:id="@+id/text_courses"
-        android:layout_width="305dp"
-        android:layout_height="458dp"
+    <TextView
+        android:id="@+id/text_course"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:textAlignment="center"
         android:textSize="20sp"
-        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.475">
+        app:layout_constraintTop_toTopOf="parent" />
 
-    </ListView>
-
-    <EditText
-        android:id="@+id/editTextClassName"
-        android:layout_width="match_parent"
-        android:textColor="@color/white"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_marginTop="16dp"
-        android:hint="@string/enter_class_name"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="89dp" />
-
-    <Button
-        android:id="@+id/btnAddCourse"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/courseFab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/add_course"
-        android:backgroundTint="@color/darkpurple"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:clickable="true"
+        android:src="@android:drawable/ic_input_add"
+        app:elevation="6dp"
+        app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.945"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextClassName"
-        app:layout_constraintVertical_bias="0.887"
-        />
-
+        app:layout_constraintTop_toBottomOf="@+id/text_course" />
+    <ListView
+        android:id="@+id/courseListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="1dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

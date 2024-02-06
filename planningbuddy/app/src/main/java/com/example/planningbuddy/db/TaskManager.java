@@ -16,22 +16,23 @@ import java.util.stream.Collectors;
 
 public class TaskManager {
     private static List<Task> taskList = new ArrayList<>();
-    private static MutableLiveData<List<Task>> taskLiveData = new MutableLiveData<>();
+    private static List<Course>  courseList = new ArrayList<>();
 
     public static void addTask(Task task) {
+        Log.d("TASKMANAGER", "addTask");
         taskList.add(task);
-        updateLiveData();
+    }
+    public static void addCourse(Course task) {
+        courseList.add(task);
     }
     public static void removeTask(int position) {
         taskList.remove(position);
-        updateLiveData();
     }
     public static void updateTask(int position, Task task) {
         taskList.set(position, task);
-        updateLiveData();
     }
-    private static void updateLiveData() {
-        taskLiveData.setValue(new ArrayList<>(taskList));
+    public static void removeCourse(int position) {
+        courseList.remove(position);
     }
 
     public static List<Task> getTasksByType(TaskType type) {
@@ -54,7 +55,7 @@ public class TaskManager {
     public static List<Task> getAllTasks() {
         return new ArrayList<>(taskList);
     }
-    public static MutableLiveData<List<Task>> getTaskLiveData() {
-        return taskLiveData;
+    public static List<Course> getAllCourses() {
+        return new ArrayList<>(courseList);
     }
 }

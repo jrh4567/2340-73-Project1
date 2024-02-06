@@ -7,9 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+
+import android.widget.CheckBox;
+
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -55,10 +59,12 @@ public class ExamAdapter extends ArrayAdapter<Task> {
         final int examPosition = position;
         // Update UI with exam information
         TextView examInfoTextView = convertView.findViewById(R.id.examInfoTextView);
+        CheckBox completionCheckBox = convertView.findViewById(R.id.completionCheckBox);
 
         if (exam != null) {
             // Use the toString method to display task information
             examInfoTextView.setText(exam.toString());
+            completionCheckBox.setChecked(exam.isCompleted());
         }
 
         LayoutInflater inflater = LayoutInflater.from(getContext());
@@ -128,6 +134,7 @@ public class ExamAdapter extends ArrayAdapter<Task> {
 
                             // Add the Task object to the TaskManager
                             TaskManager.updateTask(examPosition, exam);
+                            notifyDataSetChanged();
 
                             // Notify user and clear the input fields
                             Toast.makeText(getContext(), "Exam updated!", Toast.LENGTH_SHORT).show();
@@ -164,6 +171,12 @@ public class ExamAdapter extends ArrayAdapter<Task> {
 
             // Remove the item from the underlying data source (TaskManager)
             TaskManager.removeTask(examPosition);
+        });
+        completionCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            // Update the completion status when checkbox state changes
+            if (exam != null) {
+                exam.setCompleted(isChecked);
+            }
         });
 
 

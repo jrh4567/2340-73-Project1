@@ -1,37 +1,66 @@
-<!-- add_todo_popup.xml -->
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/addTodoPopup"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/addtodoPopup"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:padding="20dp"
-    android:background="#f7e7a0">
+    android:background="#c2f7ca">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/todoTitleInputLayout"
+        android:id="@+id/todoNameInputLayout"
         android:layout_width="match_parent"
         android:padding="5dp"
         android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/todoNameEditText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Todo Title" />
+            android:hint="To Do Task" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/todoDescriptionInputLayout"
+        android:id="@+id/todoDateInputLayout"
         android:layout_width="match_parent"
         android:padding="5dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/todoTitleInputLayout">
+        android:layout_below="@+id/todoNameInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/todoDateEditText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Todo Description" />
+            android:hint="To Do Date (yyyy-mm-dd)" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Add other fields specific to todos -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/todoCourseInputLayout"
+        android:layout_width="match_parent"
+        android:padding="5dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/todoDateInputLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/todoCourseEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="To Do Associated Course" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/todoCompletedCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/todoCourseInputLayout"
+        android:text="Completed" />
+    <Button
+        android:id="@+id/addToDoButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add To Do"
+        android:layout_below="@+id/todoCompletedCheckBox"/>
+
 
 </RelativeLayout>
