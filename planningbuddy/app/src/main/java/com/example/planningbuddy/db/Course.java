@@ -100,11 +100,19 @@ public class Course implements Comparable<Course> {
 
     public static class MeetingTime {
         private String building;
-        private GregorianCalendar startDateTime;
-        private GregorianCalendar endDateTime;
+        //private GregorianCalendar startDateTime;
+        private Date startDateTime;
+        //private GregorianCalendar endDateTime;
+        private Date endDateTime;
         private MeetingType meetingType;
 
-        public MeetingTime(MeetingType meetingType, String building, GregorianCalendar startDateTime, GregorianCalendar endDateTime) {
+        /**public MeetingTime(MeetingType meetingType, String building, GregorianCalendar startDateTime, GregorianCalendar endDateTime) {
+            this.meetingType = meetingType;
+            this.building = building;
+            this.startDateTime = startDateTime;
+            this.endDateTime = endDateTime;
+        } */
+        public MeetingTime(MeetingType meetingType, String building, Date startDateTime, Date endDateTime) {
             this.meetingType = meetingType;
             this.building = building;
             this.startDateTime = startDateTime;
@@ -121,14 +129,21 @@ public class Course implements Comparable<Course> {
             return building;
         }
 
-        public GregorianCalendar getStartDateTime() {
+
+        /**public GregorianCalendar getStartDateTime() {
             return startDateTime;
         }
 
         public GregorianCalendar getEndDateTime() {
             return endDateTime;
+        }*/
+        public Date getStartDateTime() {
+            return startDateTime;
         }
 
+        public Date getEndDateTime() {
+            return endDateTime;
+        }
         public MeetingType getMeetingType() {
             return meetingType;
         }
@@ -137,11 +152,18 @@ public class Course implements Comparable<Course> {
             this.building = building;
         }
 
-        public void setStartDateTime(GregorianCalendar startDateTime) {
+        /**public void setStartDateTime(GregorianCalendar startDateTime) {
             this.startDateTime = startDateTime;
         }
 
         public void setEndDateTime(GregorianCalendar endDateTime) {
+            this.endDateTime = endDateTime;
+        } */
+        public void setStartDateTime(Date startDateTime) {
+            this.startDateTime = startDateTime;
+        }
+
+        public void setEndDateTime(Date endDateTime) {
             this.endDateTime = endDateTime;
         }
 

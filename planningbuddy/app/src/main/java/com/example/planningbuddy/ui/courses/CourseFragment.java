@@ -119,15 +119,10 @@ public class CourseFragment extends Fragment {
                                 NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
                                 navController.navigate(R.id.navigation_courses); // Change the destination ID accordingly
                             }
-                            GregorianCalendar startDateTime = new GregorianCalendar();
-                            startDateTime.setTime(courseStartDate);
-
-                            GregorianCalendar endDateTime = new GregorianCalendar();
-                            endDateTime.setTime(courseEndDate);
 
                             // Convert type to MeetingType
                             MeetingType meetingType = MeetingType.valueOf(type.toUpperCase());
-                            Course.MeetingTime meetingObj = new Course.MeetingTime(meetingType, location, startDateTime, endDateTime);
+                            Course.MeetingTime meetingObj = new Course.MeetingTime(meetingType, location, courseStartDate, courseEndDate);
                             Course.MeetingTime[] meet = {meetingObj};
                             int number = Integer.parseInt(numberStr);
                             Course newCourse = new Course(department, number, name, meet);

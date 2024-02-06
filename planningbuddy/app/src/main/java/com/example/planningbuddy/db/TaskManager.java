@@ -31,6 +31,9 @@ public class TaskManager {
     public static void updateTask(int position, Task task) {
         taskList.set(position, task);
     }
+    public static void updateCourse(int position, Course task) {
+        courseList.set(position, task);
+    }
     public static void removeCourse(int position) {
         courseList.remove(position);
     }
