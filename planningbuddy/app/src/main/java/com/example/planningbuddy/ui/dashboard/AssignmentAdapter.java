@@ -49,7 +49,7 @@ public class AssignmentAdapter extends ArrayAdapter<Task> {
         // Get the current assignment
         Task assignment = getItem(position);
         final int assignmentPosition = position;
-        // Update UI with assignment information
+        // update w assignment info
         TextView examInfoTextView = convertView.findViewById(R.id.examInfoTextView);
         CheckBox completionCheckBox = convertView.findViewById(R.id.completionCheckBox);
 
@@ -96,7 +96,7 @@ public class AssignmentAdapter extends ArrayAdapter<Task> {
                     String aCourse = aCourseEditText.getText().toString();
                     boolean isCompleted = aCompletedCheckBox.isChecked();
 
-                    // Validate and create the Task object (TaskType.EXAM)
+                    // create assignment obj
                     if (!aName.isEmpty() && !aDateStr.isEmpty() && !aCourse.isEmpty()) {
                         // Format the date using SimpleDateFormat
                         Date aDate = null;
@@ -107,17 +107,17 @@ public class AssignmentAdapter extends ArrayAdapter<Task> {
                             popupWindow.dismiss();
                             //TODO: fix this navController code
 //                            NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
-//                            navController.navigate(R.id.navigation_notifications); // Change the destination ID accordingly
+//                            navController.navigate(R.id.navigation_notifications);
                         }
 
-                        // Create a Course object based on the user input (modify this as needed)
+                        // Create a Course object based on the user input
                         String[] courseParts = aCourse.split(" ");
                         if (courseParts.length >= 2) {
                             String departmentCode = courseParts[0];
                             int courseNumber = Integer.parseInt(courseParts[1]);
                             Course associatedCourse = new Course(departmentCode, courseNumber);
 
-                            // Edit the Task object (TaskType.EXAM)
+                            // Edit obj
                             assignment.setName(aName);
                             assignment.setDueDate(aDate);
                             assignment.setAssociatedCourse(associatedCourse);
@@ -135,36 +135,34 @@ public class AssignmentAdapter extends ArrayAdapter<Task> {
                             aCompletedCheckBox.setChecked(false);
                             popupWindow.dismiss();
 //                            NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
-//                            navController.navigate(R.id.navigation_notifications); // Change the destination ID accordingly
+//                            navController.navigate(R.id.navigation_notifications);
                         } else {
                             Toast.makeText(getContext(), "Invalid course format", Toast.LENGTH_SHORT).show();
                             popupWindow.dismiss();
 //                            NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
-//                            navController.navigate(R.id.navigation_notifications); // Change the destination ID accordingly
+//                            navController.navigate(R.id.navigation_notifications);
                         }
 
                     } else {
                         Toast.makeText(getContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show();
                         popupWindow.dismiss();
 //                        NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
-//                        navController.navigate(R.id.navigation_notifications); // Change the destination ID accordingly
+//                        navController.navigate(R.id.navigation_notifications);
                     }
                 }
             });
         });
 
-        // Set up the delete button click listener
+        // delete btn
         ImageButton deleteButton = convertView.findViewById(R.id.deleteButton);
         deleteButton.setOnClickListener(v -> {
-            // Handle delete button click
+
             remove(assignment); // Remove the item from the adapter
             notifyDataSetChanged(); // Notify the adapter that the data set has changed
 
-            // Remove the item from the underlying data source (TaskManager)
             TaskManager.removeTask(assignmentPosition);
         });
         completionCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            // Update the completion status when checkbox state changes
             if (assignment != null) {
                 assignment.setCompleted(isChecked);
             }

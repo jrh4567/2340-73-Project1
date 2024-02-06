@@ -80,13 +80,13 @@ public class DashboardFragment extends Fragment {
                         openAssignmentPopup();
                     }
                     private void openAssignmentPopup() {
-                        // Get exam details from the popup
+                        // assignment details from popup
                         String assignmentName = assignmentNameEditText.getText().toString();
                         String assignmentDateStr = assignmentDateEditText.getText().toString();
                         String assignmentCourse = assignmentCourseEditText.getText().toString();
                         boolean isCompleted = assignmentCompletedCheckBox.isChecked();
 
-                        // Validate and create the Task object (TaskType.EXAM)
+                        // create assignment obj
                         if (!assignmentName.isEmpty() && !assignmentDateStr.isEmpty() && !assignmentCourse.isEmpty()) {
                             // Format the date using SimpleDateFormat
                             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -96,17 +96,17 @@ public class DashboardFragment extends Fragment {
                             } catch (ParseException e) {
                                 Toast.makeText(getContext(), "Invalid date format", Toast.LENGTH_SHORT).show();
                                 NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
-                                navController.navigate(R.id.navigation_dashboard); // Change the destination ID accordingly
+                                navController.navigate(R.id.navigation_dashboard);
                             }
 
-                            // Create a Course object based on the user input (modify this as needed)
+                            // Create a Course object based on the user input
                             String[] courseParts = assignmentCourse.split(" ");
                             if (courseParts.length >= 2) {
                                 String departmentCode = courseParts[0];
                                 int courseNumber = Integer.parseInt(courseParts[1]);
                                 Course associatedCourse = new Course(departmentCode, courseNumber);
 
-                                // Create the Task object (TaskType.EXAM)
+                                // create obj
                                 Task exam = new Task(assignmentName, examDate, TaskType.ASSIGNMENT, associatedCourse, isCompleted);
 
                                 // Add the Task object to the TaskManager
@@ -119,17 +119,17 @@ public class DashboardFragment extends Fragment {
                                 assignmentCourseEditText.setText("");
                                 assignmentCompletedCheckBox.setChecked(false);
                                 NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
-                                navController.navigate(R.id.navigation_dashboard); // Change the destination ID accordingly
+                                navController.navigate(R.id.navigation_dashboard);
                             } else {
                                 Toast.makeText(getContext(), "Invalid course format", Toast.LENGTH_SHORT).show();
                                 NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
-                                navController.navigate(R.id.navigation_dashboard); // Change the destination ID accordingly
+                                navController.navigate(R.id.navigation_dashboard);
                             }
 
                         } else {
                             Toast.makeText(getContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show();
                             NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
-                            navController.navigate(R.id.navigation_dashboard); // Change the destination ID accordingly
+                            navController.navigate(R.id.navigation_dashboard);
                         }
                     }
                 });
@@ -138,20 +138,18 @@ public class DashboardFragment extends Fragment {
         // spinner code for functionality
         Spinner sortSpinner = binding.sortSpinner;
 
-        //Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(
                 requireContext(),
-                R.array.sort_options, // Define string array in resources with "Sort by Course" and "Sort by Date" options
+                R.array.sort_options,
                 android.R.layout.simple_spinner_item
         );
 
-        // Specify the layout to use when the list of choices appears
+        // dropdown layout
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        // Apply the adapter to the spinner
+        // bind spinner to adapter
         sortSpinner.setAdapter(spinnerAdapter);
 
-        // Set a selection listener for the spinner
         sortSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
@@ -166,10 +164,9 @@ public class DashboardFragment extends Fragment {
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-                // Do nothing here
+                // do nothing
             }
         });
-        // Get the ListView from the layout
         ListView assignmentListView = root.findViewById(R.id.assignmentListView);
         AssignmentAdapter assignmentAdapter;
 
@@ -183,7 +180,7 @@ public class DashboardFragment extends Fragment {
         // Set the adapter for the ListView
         assignmentListView.setAdapter(assignmentAdapter);
 
-        // Observe changes in the list of exams and update the adapter
+        // Observe changes in the list of assignments and update the adapter
         dashboardViewModel.getAssignments().observe(getViewLifecycleOwner(), assignments -> {
             assignmentAdapter.clear();
             assignmentAdapter.addAll(assignments);

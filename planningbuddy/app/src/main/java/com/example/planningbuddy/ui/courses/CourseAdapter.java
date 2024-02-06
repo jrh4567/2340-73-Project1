@@ -46,7 +46,7 @@ public class CourseAdapter extends ArrayAdapter<Course> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_course_item, parent, false);
         }
 
-        // Get the current exam
+        // Get the current course
         Course course = getItem(position);
         final int coursePosition = position;
 
@@ -95,7 +95,7 @@ public class CourseAdapter extends ArrayAdapter<Course> {
                     return "";
                 }
                 private void openCoursePopup() {
-                    // Get assignment details from the popup
+                    // course details
                     String department = courseDepartmentInputLayout.getEditText().getText().toString();
                     String numberStr = courseNumberInputLayout.getEditText().getText().toString();
                     String name = courseNameInputLayout.getEditText().getText().toString();
@@ -104,7 +104,7 @@ public class CourseAdapter extends ArrayAdapter<Course> {
                     String startDateStr = editTextStartDate.getText().toString();
                     String endDateStr = editTextEndDate.getText().toString();
 
-                    // Validate and create the Task object (TaskType.EXAM)
+                    // create course obj
                     if (!department.isEmpty() && !numberStr.isEmpty() && !name.isEmpty() && !type.isEmpty() && !startDateStr.isEmpty() && !endDateStr.isEmpty()) {
                         // Format the date using SimpleDateFormat
                         Date courseStartDate = null;
@@ -117,7 +117,7 @@ public class CourseAdapter extends ArrayAdapter<Course> {
                             popupWindow.dismiss();
                             //TODO: fix this navController code
 //                            NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
-//                            navController.navigate(R.id.navigation_notifications); // Change the destination ID accordingly
+//                            navController.navigate(R.id.navigation_notifications);
                         }
 
                         MeetingType meetingType = MeetingType.valueOf(type.toUpperCase());
@@ -136,27 +136,27 @@ public class CourseAdapter extends ArrayAdapter<Course> {
                         Toast.makeText(getContext(), "Course updated!", Toast.LENGTH_SHORT).show();
                         popupWindow.dismiss();
 //                            NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
-//                            navController.navigate(R.id.navigation_notifications); // Change the destination ID accordingly
+//                            navController.navigate(R.id.navigation_notifications);
 
 
                     } else {
                         Toast.makeText(getContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show();
                         popupWindow.dismiss();
 //                        NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
-//                        navController.navigate(R.id.navigation_notifications); // Change the destination ID accordingly
+//                        navController.navigate(R.id.navigation_notifications);
                     }
                 }
             });
         });
 
-        // Set up the delete button click listener
+        // delete button listener
         ImageButton deleteButton = convertView.findViewById(R.id.deleteButton);
         deleteButton.setOnClickListener(v -> {
-            // Handle delete button click
+
             remove(course); // Remove the item from the adapter
             notifyDataSetChanged(); // Notify the adapter that the data set has changed
 
-            // Remove the item from the underlying data source (TaskManager)
+
             TaskManager.removeCourse(coursePosition);
         });
 

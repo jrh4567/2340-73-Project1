@@ -17,7 +17,7 @@ public class DashboardViewModel extends ViewModel {
 
     public DashboardViewModel() {
         mAssignments = new MutableLiveData<List<Task>>();
-        mSortByDate = new MutableLiveData<>(true); // Default value is true (Sort by Date)
+        mSortByDate = new MutableLiveData<>(true); // Default value is true
         updateAssignments();
     }
 

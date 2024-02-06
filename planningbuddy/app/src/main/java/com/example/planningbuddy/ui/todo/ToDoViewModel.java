@@ -17,7 +17,7 @@ public class ToDoViewModel extends ViewModel {
 
     public ToDoViewModel() {
         mToDo = new MutableLiveData<>();
-        // Initially, populate the list with all exams
+        // initially populate list
         mToDo.setValue(TaskManager.getTasksByType(TaskType.TODO));
     }
 

@@ -82,7 +82,7 @@ public class NotificationsFragment extends Fragment {
                         String examLocation = examLocationEditText.getText().toString();
                         boolean isCompleted = examCompletedCheckBox.isChecked();
 
-                        // Validate and create the Task object (TaskType.EXAM)
+                        // create exam obj
                         if (!examName.isEmpty() && !examDateStr.isEmpty() && !examCourse.isEmpty() && !examLocation.isEmpty()) {
                             // Format the date using SimpleDateFormat
                             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -92,20 +92,20 @@ public class NotificationsFragment extends Fragment {
                             } catch (ParseException e) {
                                 Toast.makeText(getContext(), "Invalid date format", Toast.LENGTH_SHORT).show();
                                 NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
-                                navController.navigate(R.id.navigation_notifications); // Change the destination ID accordingly
+                                navController.navigate(R.id.navigation_notifications);
                             }
 
-                            // Create a Course object based on the user input (modify this as needed)
+                            // Create a Course object based on the user input
                             String[] courseParts = examCourse.split(" ");
                             if (courseParts.length >= 2) {
                                 String departmentCode = courseParts[0];
                                 int courseNumber = Integer.parseInt(courseParts[1]);
                                 Course associatedCourse = new Course(departmentCode, courseNumber);
 
-                                // Create the Task object (TaskType.EXAM)
+                                // create exam obj
                                 Task exam = new Task(examName, examDate, TaskType.EXAM, associatedCourse, isCompleted, examLocation);
 
-                                // Add the Task object to the TaskManager
+                                // add obj
                                 TaskManager.addTask(exam);
 
                                 // Notify user and clear the input fields
@@ -116,30 +116,30 @@ public class NotificationsFragment extends Fragment {
                                 examCompletedCheckBox.setChecked(false);
                                 examLocationEditText.setText("");
                                 NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
-                                navController.navigate(R.id.navigation_notifications); // Change the destination ID accordingly
+                                navController.navigate(R.id.navigation_notifications);
                             } else {
                                 Toast.makeText(getContext(), "Invalid course format", Toast.LENGTH_SHORT).show();
                                 NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
-                                navController.navigate(R.id.navigation_notifications); // Change the destination ID accordingly
+                                navController.navigate(R.id.navigation_notifications);
                             }
 
                         } else {
                             Toast.makeText(getContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show();
                             NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
-                            navController.navigate(R.id.navigation_notifications); // Change the destination ID accordingly
+                            navController.navigate(R.id.navigation_notifications);
                         }
                     }
                 });
             }
         });
 
-        // Get the ListView from the layout
+        // get list view
         ListView examsListView = root.findViewById(R.id.examsListView);
 
-        // Create an adapter to populate the ListView with exam data
+        // Create an exam adapter
         ExamAdapter examsAdapter = new ExamAdapter(requireContext(), TaskManager.getTasksByType(TaskType.EXAM));
 
-        // Set the adapter for the ListView
+        // set the adapter for the ListView
         examsListView.setAdapter(examsAdapter);
 
         // Observe changes in the list of exams and update the adapter
